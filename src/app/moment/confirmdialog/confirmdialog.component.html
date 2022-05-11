@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+ <p> {{ data.message }} </p>
+ 
+<div style="display: flex;justify-content:space-around;">
+   <button mat-raised-button color="primary" (click)="onNoClick()" > No </button>
+   <button mat-raised-button color="primary" (click)="delete()" > Yes </button>
+</div>
+ 
+</div>

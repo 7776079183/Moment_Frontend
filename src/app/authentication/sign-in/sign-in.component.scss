@@ -1,0 +1,30 @@
+// .mat-card {
+//     width: 250px !important;
+// }
+.header{
+    display: flex;
+    padding: 50px 0 100px 0;
+    background-color: #001B30;
+    justify-content: center;
+}
+// .signup{
+//     display: flex;
+//     justify-content: center;
+//     background-color: white;
+//     margin-top: -50px;
+//     border-top-left-radius: 20px;
+//     margin-top: 50px;
+// }
+
+mat-card {
+  max-width: 500px;
+  margin: 2em auto;
+  text-align: center;
+  padding: 50px;
+}
+  .signin-content {
+    padding: 60px 1rem;
+  }
+  .full-width-input {
+    width: 100%;
+  }

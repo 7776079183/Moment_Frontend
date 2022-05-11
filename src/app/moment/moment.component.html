@@ -1,0 +1,48 @@
+<div style="display:flex; justify-content: center;" *ngIf="loader">
+  <mat-spinner></mat-spinner>
+</div>
+<div style="padding: 10px;">
+  <button mat-raised-button color="primary" (click)="addMoment()" > Add Moment </button>
+</div>
+<div class="example-container mat-elevation-z8"  *ngIf="!loader">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="sr_no">
+        <mat-header-cell *matHeaderCellDef> SR No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sr_no}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="image_url">
+        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <span style="padding: 10px;">
+          <mat-cell *matCellDef="let element"> 
+            <img [src]="BASE_URL+element.image_url" alt="Photo of 5d" style="height: 50px;width: 50px;">  
+          </mat-cell>
+        </span>
+        </ng-container>
+  
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tags">
+        <mat-header-cell *matHeaderCellDef> Tags </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <button mat-raised-button color="primary" style="margin: 5px" *ngFor="let element of element.tags"> {{element}}  <i class="material-icons"  style="cursor: pointer;">cancel</i></button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <i class="material-icons" style="cursor: pointer;" (click)="deleteMoment(element)">delete</i> &nbsp;
+            <i class="material-icons"  style="cursor: pointer;" (click)="updateMoment(element)">edit</i>   
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  

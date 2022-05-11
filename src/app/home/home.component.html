@@ -1,0 +1,21 @@
+ <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="mode.value" [opened]="isShowing">
+        <p>
+            <img src="assets/images/logo2.png" alt="Logo" />
+        </p>
+       <div class="menu-list">      
+        <p class="item" routerLink="/moment"> Mange Moment <br></p>
+        <p class="item" (click)="logout()"> Logout <br></p>
+      </div>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+        <div class="header">
+            <p><mat-icon (click)="toggleSidenav()">menu</mat-icon></p>
+        </div>
+            
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>  

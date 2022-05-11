@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+<div class="signin-content">
+    <form  [formGroup]="momentForm" >
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Commet" formControlName="comment">
+        <mat-error *ngIf="submitted && f.comment.errors && f.comment.errors.required" >
+          Please Enter comment
+        </mat-error>
+      </mat-form-field>
+     
+      <mat-form-field class="full-width-input">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                   [removable]="removable" (removed)="remove(tag)">
+            {{tag}}
+            <i class="material-icons" matChipRemove  style="cursor: pointer;">cancel</i>
+          </mat-chip>
+          <input matInput placeholder="Add new tags"
+                 formControlName="tags"
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field >
+      <mat-error style="font-size: 84%;margin-top: -15px;margin-left: 10px;" *ngIf="submitted && tags.length==0">
+        Please Add Tags
+      </mat-error>
+      
+     
+      <div class="full-width-input" style="padding: 14px">
+        <input type="file" formControlName="moment_image" (change)="changefile($event)" accept="image/png,image/jpeg"/>
+        <div *ngIf="submitted && !filetoupload" >
+            <p style="color: #f44336;font-size: 84%;"> file is required</p>
+        </div>
+      </div>
+      <div style="padding: 10px;" *ngIf="data.action=='update'"> 
+        <img [src]="BASE_URL+data.udate_data.image_url" alt="Photo of 5d" style="height: 50px;width: 50px;"> 
+      </div>
+      <div style="display: flex;justify-content:space-around;">
+        <button mat-raised-button color="primary" *ngIf="data.action=='update'" (click)="addMoment()" [disabled]="loading"> <span *ngIf="loading">Loading...</span> <span *ngIf="!loading">Update</span> </button>
+        <button mat-raised-button color="primary" *ngIf="data.action=='add'" (click)="addMoment()" [disabled]="loading"> <span *ngIf="loading">Loading...</span> <span *ngIf="!loading">Add New</span> </button>
+        <button mat-raised-button color="primary" (click)="onNoClick()"> Cancel </button>
+      </div>
+    </form>
+  </div>
+</div>
